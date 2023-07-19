@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>time</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        .time-box{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+            color: #fff;
+            font-size: 40px;
+        }
+        #timess{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="time-box">
+        <p id="time">00:00:00</p>
+    </div>
+    <script>
+        const getCurrentTime =() =>{
+            const times = document.querySelector('#time')
+            setInterval(()=>{
+                const dt = new Date()
+                const h=dt.getHours().toString().padStart(2, '0')
+                const m=dt.getMinutes().toString().padStart(2, '0')
+                const s=dt.getSeconds().toString().padStart(2, '0')
+                times.innerHTML=`${h}:${m}:${s}`
+            },1000)
+        }
+        getCurrentTime();
+    </script>
+</body>
+</html>

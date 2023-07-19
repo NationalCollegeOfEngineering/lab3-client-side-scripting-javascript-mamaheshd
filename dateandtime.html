@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="for-dateTime"></h1>
+    <h2 id="for-time"></h2>
+    <script>
+        function showDateTime() {
+            document.getElementById("for-dateTime").innerHTML =Date()
+        }
+        setInterval(showDateTime,1000)
+        function showTime() {
+            document.getElementById("for-time").innerHTML
+        }
+        setInterval(showTime,1000)
+    </script>
+</body>
+</html>
