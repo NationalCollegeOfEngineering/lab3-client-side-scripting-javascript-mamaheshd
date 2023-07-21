@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Code</title>
+</head>
+
+<body id="body" style="background-color: blue;">
+    <!-- inline javascript code -->
+    <!-- <div onload="alert('Hello from onload alert')"></div>  -->
+    <!-- load when page load-->
+    <div>
+        div 1
+    </div>
+    <br><br>
+    <div>
+        div 2
+    </div>
+    <!-- for show hide -->
+    <div id="myTestDiv">My div</div> <br>
+    <button onclick="showHideDiv()">show or hide</button>
+    <button onclick="alert('Hello from inline js')">button first click</button><!--load when click in button --> <br>
+    <br>
+    <button onclick="console.log('button two is clicked')">button two </button> <br>
+    <!-- Display in console page can't show in page only show inside console--> <br>
+    <button onclick="alert('Hi')">click to say
+        hi</button><!-- when click to say hi is clicked then popup comes where hi is written--> <br> <br>
+    <button onclick="changeColor()">Change Color</button> <br>
+    userName: <br> <br>
+    <input type="text" name="userName" id="name"> <button onclick="sayHi()"> Say hi with name</button> <br><br>
+
+    <button id="btnDyClick"> Dynamic Event</button> <br><br>
+
+    <button onclick="dynamicEventTest()"> Dynamic Event 2</button>
+    <button onclick="askConfirm()">Delete</button>
+    <button onclick="showPrompt()"> demo prompt</button>
+    <script>
+        function showPrompt() {
+            var result = prompt('what is your name')
+            document.write('Welcome ' + result)
+        }
+        function askConfirm() {
+            var result = confirm('Do you want to delete?')
+            if (result == true) {
+                //perform delete
+                console.log('Deletd') //comes inside console when deleted the perform true 
+            }
+        }
+        function showHideDiv() {
+            var currentStyle = document.getElementById('myTestDiv').style.display;
+            if (currentStyle == 'none') {
+                document.getElementById('myTestDiv').style.display = "block"
+            }
+            else {
+                document.getElementById('myTestDiv').style.display = "none"
+            }
+        }
+        // internal javascript code
+        //load first
+        // alert('Hello from internal js')
+        function sayHi() {
+            alert("Hi  " + document.getElementById("name").value) //event call with function function is create when multiple statement need to written
+            // alert is defined inside window which is global object (alert, document, console, ...)
+            // dom is logical reprsentation to access html, css files
+
+        }
+        // 1 no onclick() in button 1 because addEventListener is used to give dynamic it is called when click anywhere in screen  
+        function dynamicEventTest() {
+            alert('Dynamic Listener')
+        }
+        // document.addEventListener("click",dynamicEventTest,false)
+        // to slove problem written in comment 1
+        document.getElementById('btnDyClick').addEventListener("click", dynamicEventTest, false)
+
+        function changeColor() {
+            // with id
+            document.getElementById("body").style.backgroundColor = "red"
+            // without id change color to yellow
+            // document.body.style.backgroundColor='#ffee11'
+            // colour change using tagname
+            // document.getElementsByTagName('body')[0].style.backgroundColor='#ffee11'
+            //used to change color of selected tag 'div'
+            document.getElementsByTagName('div')[0].style.backgroundColor = '#ffee11'
+            //use to change color of both div
+            // document.div.style.backgroundColor='#ffee11'
+        }
+    </script>
+    <!-- load second -->
+    <!-- <script src="exjs.js"></script>  -->
+</body>
+
+</html>
