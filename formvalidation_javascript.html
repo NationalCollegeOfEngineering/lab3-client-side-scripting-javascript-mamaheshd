@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation</title>
+</head>
+<style>
+    .content {
+        margin: 5px;
+        padding: 5px;
+        align-items: center;
+        color: black;
+        text-align: justify;
+    }
+
+    .container {
+        margin: 5px;
+        padding: 5px;
+        align-items: center;
+        background-color: blueviolet;
+        width: 20%;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <form>
+            <div class="content">
+                <label for="fname">FirstName</label>
+                <input type="text" name="fname" id="fname" class="form-control" onkeyup="fnameValidate()">
+                <span id="fnameMsg"></span>
+            </div>
+            <div class="content">
+                <label for="lname">LastName</label>
+                <input type="text" name="lname" id="lname" class="form-control" onkeyup="lnameValidate()">
+                <span id="lnameMsg"></span>
+            </div>
+            <div class="content">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="form-control" onkeyup="emailValidate()">
+                <span id="emailMsg"></span>
+            </div>
+            <div class="content">
+                <label for="pwd">Password</label>
+                <input type="password" name="pwd" id="pwd" class="form-control" onkeyup="pwdValidate()">
+                <span id="pwdMsg"></span>
+            </div>
+            <div class="content">
+                <label for="cpwd">Confirm Password</label>
+                <input type="password" name="cpwd" id="cpwd" class="form-control" onkeyup="cpwdValidate()">
+                <span id="cpwdMsg"></span>
+            </div>
+            <div class="content">
+                <input type="submit" value="Register" class="btn btn-primary ">
+        </form>
+    </div>
+
+    <script>
+
+        const displayMsg = (message, id, colorName) => {
+            document.getElementById(id).innerHTML = message
+            document.getElementById(id).style.color = colorName
+
+        }
+        const fnameValidate = () => {
+            const first_name = document.getElementById('fname').value
+            if (first_name == "") {
+                displayMsg('first name is mandatory', 'fnameMsg', 'red')
+                return false
+            }
+            else if (!first_name.match(/^([a-z])+$/)) {
+                displayMsg('first name only contains lowercase alphabets', 'fnameMsg', 'red')
+                return false
+            }
+            else if (first_name.length < 3) {
+                displayMsg('first name must be more then 2 characters', 'fnameMsg', 'red')
+                return false
+            }
+            else {
+                displayMsg('valid firstname', 'fnameMsg', 'green')
+                return true
+            }
+        }
+        const lnameValidate = () => {
+            const last_name = document.getElementById('lname').value
+            if (last_name == "") {
+                displayMsg('last name is mandatory', 'lnameMsg', 'red')
+                return false
+            }
+            else if (!last_name.match(/^([a-z])+$/)) {
+                displayMsg('last name only contains lowercase letters only', 'lnameMsg', 'red')
+                return false
+            }
+            else if (last_name.length < 3) {
+                displayMsg('last name must be more then 2 characters', 'lnameMsg', 'red')
+                return false
+            }
+            else {
+                displayMsg('valid lastname', 'lnameMsg', 'green')
+                return true
+            }
+        }
+
+        const emailValidate = () => {
+            const email = document.getElementById('email').value
+
+            if (email == "") {
+                displayMsg('email is mandatory', 'emailMsg', 'red')
+                return false
+            }
+            else if (!email.match(/^([a-zA-Z0-9])([a-z0-9\-\_\.])+\@+([a-z])+\.+([a-z])+$/)) {
+                displayMsg('invalid email format', 'emailMsg', 'red')
+                return false
+            }
+            else {
+                displayMsg('valid email', 'emailMsg', 'green')
+                return true
+            }
+        }
+
+        const pwdValidate = () => {
+            const password = document.getElementById('pwd').value
+            if (password == "") {
+                displayMsg('password is mandatory', 'pwdMsg', 'red')
+                return false
+            }
+            else if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\@\#\$\-\_\?]).{8,100}$/)) {
+                displayMsg('password be minimun of 8 character and should be like: Abc@123', 'pwdMsg', 'red')
+                return false
+            }
+            else {
+                displayMsg('strong password', 'pwdMsg', 'green')
+                return true
+            }
+        }
+
+        const cpwdValidate = () => {
+            const password = document.getElementById('pwd').value
+            const confirmPassword = document.getElementById('cpwd').value
+            if (confirmPassword == "") {
+                displayMsg('confirm password is mandatory', 'cpwdMsg', 'red')
+                return false
+            }
+            else if (password !== confirmPassword) {
+                displayMsg('password and confirm password is not matche: Abc@123', 'pwdMsg', 'red')
+                return false
+            }
+            else {
+                displayMsg('password and confirm password matchs', 'cpwdMsg', 'green')
+                return true
+            }
+        }
+
+        const validForm = () => {
+            if (fnameValidate() && lnameValidate() && emailValidate() && pwdValidate() && cpwdValidate()) {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+    </script>
+</body>
+
+</html>
